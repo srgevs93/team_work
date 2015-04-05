@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace team_work
 {
-    public partial class Form1 : Form
+    public partial class Filters : Form
     {
-        public Form1()
+        public Filters()
         {
             InitializeComponent();
         }
