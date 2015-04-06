@@ -77,7 +77,8 @@ namespace team_work
 
             if (result == DialogResult.Yes)
             {
-                MessageBox.Show("Calculate");
+                SpacePoint sp = new SpacePoint(12, 45, 8);
+                List<SpacePoint> list = Query.QuerySkyMap(sp, 30, 3);
             }
 
         }

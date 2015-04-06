@@ -76,6 +76,8 @@
     <Compile Include="Filters.Designer.cs">
       <DependentUpon>Filters.cs</DependentUpon>
     </Compile>
+    <Compile Include="Query.cs" />
+    <Compile Include="SpacePoint.cs" />
     <EmbeddedResource Include="Count.resx">
       <DependentUpon>Count.cs</DependentUpon>
     </EmbeddedResource>
