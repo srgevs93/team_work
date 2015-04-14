@@ -63,6 +63,7 @@ namespace team_work
         }
         //
         //показать...
+        //
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string message =
