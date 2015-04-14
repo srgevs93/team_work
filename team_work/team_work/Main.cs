@@ -64,6 +64,8 @@ namespace team_work
         //
         //показать...
         //
+
+        // hotfix
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string message =
