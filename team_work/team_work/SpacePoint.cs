@@ -12,9 +12,9 @@ namespace team_work
         {
             this.ID = id;
             this.CatID = catID;
-            this.RA = ra;
-            this.DE = de;
-            this.Magnitude = mag;
+            this.RA = ra;         //прямое восхождение звезды
+            this.DE = de;         //склонение
+            this.Magnitude = mag; //звездная величина
         }
 
         public SpacePoint(double ra, double de, float mag)
@@ -23,7 +23,7 @@ namespace team_work
             this.DE = de;
             this.Magnitude = mag;
         }
-
+        
         public readonly int ID;
         public readonly string CatID;
         public readonly double RA;
