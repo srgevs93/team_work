@@ -95,7 +95,8 @@ namespace team_work
             for (int i = 0; i < list.Count; i++)
             {
                 listBox1.Items.Add(list[i].CatID.ToString() + " \t" + list[i].ID.ToString() +
-                    " \t" + list[i].Magnitude.ToString());
+                    " \t" + list[i].Magnitude.ToString()+" \t"+list[i].RA.ToString()+
+                    " \t" +list[i].DE.ToString());
             }
             // Allow the ListBox to repaint and display the new items.
             listBox1.EndUpdate();
@@ -134,7 +135,8 @@ namespace team_work
         {
             string Info = listBox1.SelectedItem.ToString();
             string[] words = Info.Split('\t');
-            label1.Text = "Информация и звезде: \n Номер в каталоге: "+words[0] + " \n Звездная величина: "+words[2];
+            label1.Text = "Информация и звезде: \n Номер в каталоге: "+words[0] +
+                " \n Звездная величина: "+words[2]+ "\n RA="+words[3]+"\n "+words[4];
         }
 
         private void звезднойВеличинеToolStripMenuItem_Click(object sender, EventArgs e)
