@@ -12,10 +12,11 @@ namespace team_work
 {
     public partial class Main : Form
     {
-        DateTime data;   //дата наблюдений
+        DateTime data = DateTime.Now;   //дата наблюдений
         float lon=0;     //долгота
         float lat=0;     //широта
         int count = 100; //кол-во выводимых звезд
+        List<SpacePoint> list;
         public Main()
         {
             InitializeComponent();
@@ -80,10 +81,27 @@ namespace team_work
 
             if (result == DialogResult.Yes)
             {
-                SpacePoint sp = new SpacePoint(12, 45, 8);
-                List<SpacePoint> list = Query.QuerySkyMap(sp, 30, 3);
+                SpacePoint sp = new SpacePoint(0, lat, 8);
+                //if (list.Count != 0)         list.Clear();
+                list = Query.QuerySkyMap(sp, 120, count);
+                ShowList();
             }
 
+        }
+
+        private void ShowList()
+        {
+            // Shutdown the painting of the ListBox as items are added.
+            listBox1.BeginUpdate();
+            listBox1.Items.Add("CatID \t ID \t Magnitude");
+            for (int i = 0; i < list.Count; i++)
+            {
+                listBox1.Items.Add(list[i].CatID.ToString() + " \t" + list[i].ID.ToString() +
+                    " \t" + list[i].Magnitude.ToString()+" \t"+list[i].RA.ToString()+
+                    " \t" +list[i].DE.ToString());
+            }
+            // Allow the ListBox to repaint and display the new items.
+            listBox1.EndUpdate();
         }
 
         private void очиститьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -113,6 +131,36 @@ namespace team_work
                 "Сама операция выводов списка звездных объектов находится на вкладке Файл - показать.."+
                 "Если сразу после запуска выбрать данное действие, все данные будут выбраны по умолчанию.";
             MessageBox.Show(message,"Руководство пользователя");
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string Info = listBox1.SelectedItem.ToString();
+            string[] words = Info.Split('\t');
+            label1.Text = "Информация и звезде: \n Номер в каталоге: "+words[0] +
+                " \n Звездная величина: "+words[2]+ "\n RA="+words[3]+"\n "+words[4];
+        }
+
+        private void звезднойВеличинеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            звезднойВеличинеToolStripMenuItem.Checked = true;
+            координатамToolStripMenuItem.Checked = false;
+            поАлфавитуToolStripMenuItem.Checked = false;
+            
+        }
+
+        private void координатамToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            координатамToolStripMenuItem.Checked = true;
+            поАлфавитуToolStripMenuItem.Checked = false;
+            звезднойВеличинеToolStripMenuItem.Checked = false;
+        }
+
+        private void поАлфавитуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            поАлфавитуToolStripMenuItem.Checked = true;
+            координатамToolStripMenuItem.Checked = false;
+            звезднойВеличинеToolStripMenuItem.Checked = false;
         }
     }
 }
