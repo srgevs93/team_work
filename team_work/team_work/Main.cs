@@ -83,7 +83,7 @@ namespace team_work
             {
                 SpacePoint sp = new SpacePoint(0, lat, 8);
                 //if (list.Count != 0)         list.Clear();
-                list = Query.QuerySkyMap(sp, 120, count);
+                list = SkyMap.Query(sp, 120, count);
                 ShowList();
             }
 
