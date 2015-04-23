@@ -85,6 +85,7 @@ namespace team_work
                 //if (list.Count != 0)         list.Clear();
                 list = SkyMap.Query(sp, 120, count);
                 ShowList();
+                Star star = SkyMap.Query("α UMi");
             }
 
         }

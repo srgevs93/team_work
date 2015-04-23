@@ -76,8 +76,8 @@
     <Compile Include="Filters.Designer.cs">
       <DependentUpon>Filters.cs</DependentUpon>
     </Compile>
-    <Compile Include="Query.cs" />
-    <Compile Include="SpacePoint.cs" />
+    <Compile Include="SkyMap.cs" />
+    <Compile Include="Star.cs" />
     <EmbeddedResource Include="Count.resx">
       <DependentUpon>Count.cs</DependentUpon>
     </EmbeddedResource>
