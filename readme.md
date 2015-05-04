@@ -7,4 +7,5 @@ Devs:
 * Evseev S.
 * Litvinova I.
 
-[Билд-сервер] (https://ci.appveyor.com/project/srgevs/team-work)  
+[build-server] (https://ci.appveyor.com/project/srgevs/team-work)
+[docs](http://srgevs93.github.io/team_work/) 
