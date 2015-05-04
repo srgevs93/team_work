@@ -83,9 +83,12 @@ namespace team_work
             {
                 SpacePoint sp = new SpacePoint(0, lat, 8);
                 //if (list.Count != 0)         list.Clear();
-                list = SkyMap.Query(sp, 120, count);
-                ShowList();
-                Star star = SkyMap.Query("α UMi");
+                list = new SkyMap().Query(sp, 120, count);
+                if (list != null)
+                    ShowList();
+                else
+                    MessageBox.Show("все серверы недоступны");
+                Star star = new SkyMap().Query("α UMi");
             }
 
         }

@@ -12,39 +12,74 @@ namespace team_work
 {
     class SkyMap
     {
-        private const string ServerGroup = "http://server1.sky-map.org/getstars.jsp?";
-        private const string ServerStar = "http://server1.sky-map.org/search?";
+        private string[] ServerGroup = null;
+        private string[] ServerStar = null;
+        public SkyMap()
+        {
+            this.ServerGroup = new string[]{
+            "http://server1.sky-map.org/getstars.jsp?", 
+            "http://server2.sky-map.org/getstars.jsp?", 
+            "http://server3.sky-map.org/getstars.jsp?"};
+
+            this.ServerStar = new string[]{
+            "http://server1.sky-map.org/search?",
+            "http://server2.sky-map.org/search?",
+            "http://server3.sky-map.org/search?"};
+        }
+
         public static NumberFormatInfo NFI()
         {
             NumberFormatInfo nfi = new NumberFormatInfo();
             nfi.NumberDecimalSeparator = ".";
             return nfi;
         }
-        public static List<SpacePoint> Query(SpacePoint sp, float angle, int maxStars)
+        public List<SpacePoint> Query(SpacePoint sp, float angle, int maxStars)
         {
-            string request = CreateRequest(sp, angle, maxStars);
-            XmlDocument response = MakeRequest(request);
+            for (int i = 0; i < ServerGroup.Length; i++)
+            {
+                try
+                {
+                    string request = CreateRequest(sp, angle, maxStars, ServerGroup[i]);
+                    XmlDocument response = MakeRequest(request);
+                    List<SpacePoint> list = ParseGroup(response);
+                    return list;
+                }
+                catch (System.Net.WebException e)
+                {
 
-            List<SpacePoint> list = ParseGroup(response);
-            return list;
+                }
+            }
+            return null;
         }
-        public static Star Query(String starName)
-        {
-            string request = CreateRequest(starName);
-            XmlDocument response = MakeRequest(request);
 
-            Star star = ParseStar(response);
-            return star;
-        }
-        private static string CreateRequest(String starName)
+        public Star Query(String starName)
         {
-            string request = ServerStar;
+            for (int i = 0; i < ServerGroup.Length; i++)
+            {
+                try
+                {
+                    string request = CreateRequest(starName, ServerStar[i]);
+                    XmlDocument response = MakeRequest(request);
+
+                    Star star = ParseStar(response);
+                    return star;
+                }
+                catch (System.Net.WebException e)
+                {
+
+                }
+            }
+            return null;
+        }
+        private static string CreateRequest(String starName, string Server)
+        {
+            string request = Server;
             request += "star=" + starName;
             return request;
         }
-        private static string CreateRequest(SpacePoint sp, float angle, int maxStars)
+        private static string CreateRequest(SpacePoint sp, float angle, int maxStars, string Server)
         {
-            string request = ServerGroup;
+            string request = Server;
             request += "ra=" + sp.RA + "&";
             request += "de=" + sp.DE + "&";
             request += "max_vmag=" + sp.Magnitude + "&";
@@ -91,7 +126,7 @@ namespace team_work
             nsmgr.AddNamespace("rest", "http://schemas.microsoft.com/search/local/ws/rest/v1");
             XmlNodeList stars = xml.GetElementsByTagName("star");
 
-            foreach(XmlElement star in stars)
+            foreach (XmlElement star in stars)
             {
                 int id = int.Parse((star.Attributes["id"].Value));
                 string catID = star.GetElementsByTagName("catId")[0].InnerText;
