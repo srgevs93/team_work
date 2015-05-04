@@ -100,10 +100,6 @@ namespace team_work
 
         private static Star ParseStar(XmlDocument xml)
         {
-            //Create namespace manager
-            XmlNamespaceManager nsmgr = new XmlNamespaceManager(xml.NameTable);
-            nsmgr.AddNamespace("rest", "http://schemas.microsoft.com/search/local/ws/rest/v1");
-
             XmlElement star = (XmlElement)xml.GetElementsByTagName("object")[0];
             //int id = int.Parse((star.Attributes["id"].Value));
             string catID = star.GetElementsByTagName("catId")[0].InnerText;
@@ -121,9 +117,6 @@ namespace team_work
         private static List<SpacePoint> ParseGroup(XmlDocument xml)
         {
             List<SpacePoint> list = new List<SpacePoint>();
-            //Create namespace manager
-            XmlNamespaceManager nsmgr = new XmlNamespaceManager(xml.NameTable);
-            nsmgr.AddNamespace("rest", "http://schemas.microsoft.com/search/local/ws/rest/v1");
             XmlNodeList stars = xml.GetElementsByTagName("star");
 
             foreach (XmlElement star in stars)
