@@ -8,5 +8,5 @@ Devs:
 * Litvinova I.
 
 [build-server] (https://ci.appveyor.com/project/srgevs/team-work)
-
-[docs](http://srgevs93.github.io/team_work/) 
+[docs] (http://srgevs93.github.io/team_work/) 
+[resharper tools analysis] (https://github.com/srgevs93/team_work/blob/gh-pages/report.xml)
