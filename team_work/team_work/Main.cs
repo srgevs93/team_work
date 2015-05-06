@@ -88,7 +88,7 @@ namespace team_work
                     ShowList();
                 else
                     MessageBox.Show("все серверы недоступны");
-                Star star = new SkyMap().Query("α UMi");
+                
             }
 
         }
@@ -96,6 +96,7 @@ namespace team_work
         private void ShowList()
         {
             // Shutdown the painting of the ListBox as items are added.
+            listBox1.Items.Clear();
             listBox1.BeginUpdate();
             listBox1.Items.Add("CatID \t ID \t Magnitude");
             for (int i = 0; i < list.Count; i++)
@@ -141,29 +142,27 @@ namespace team_work
         {
             string Info = listBox1.SelectedItem.ToString();
             string[] words = Info.Split('\t');
-            label1.Text = "Информация и звезде: \n Номер в каталоге: "+words[0] +
-                " \n Звездная величина: "+words[2]+ "\n RA="+words[3]+"\n "+words[4];
+            Star star = new SkyMap().Query(words[0]);
+            label1.Text = "Информация и звезде: \n Имя звезды : "+words[0] +
+                " \n Звездная величина: "+words[2]+ "\n RA = "+words[3]+"\n DE = "+words[4]+"\n Имя созвездия: "+star.Constellation.Name;
+
         }
 
         private void звезднойВеличинеToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            list.Sort(Star.compareByMag);
+            ShowList();
             звезднойВеличинеToolStripMenuItem.Checked = true;
-            координатамToolStripMenuItem.Checked = false;
             поАлфавитуToolStripMenuItem.Checked = false;
             
         }
 
-        private void координатамToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            координатамToolStripMenuItem.Checked = true;
-            поАлфавитуToolStripMenuItem.Checked = false;
-            звезднойВеличинеToolStripMenuItem.Checked = false;
-        }
 
         private void поАлфавитуToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            list.Sort(Star.compareByName);
+            ShowList();
             поАлфавитуToolStripMenuItem.Checked = true;
-            координатамToolStripMenuItem.Checked = false;
             звезднойВеличинеToolStripMenuItem.Checked = false;
         }
     }
