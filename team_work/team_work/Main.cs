@@ -15,7 +15,10 @@ namespace team_work
     /// </summary>
     public partial class Main : Form
     {
-        DateTime data = DateTime.Now;   //дата наблюдений
+        /// <summary>
+        /// Дата наблюдений
+        /// </summary>
+        DateTime data = DateTime.Now;
         float lon=0;     //долгота
         float lat=0;     //широта
         int count = 100; //кол-во выводимых звезд
