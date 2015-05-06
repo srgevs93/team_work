@@ -117,7 +117,7 @@ namespace team_work
         /// <param name="Server">Сервер</param>
         /// <returns></returns>
 
-        private static string CreateRequest(SpacePoint sp, float angle, int maxStars, string Server)
+        public static string CreateRequest(SpacePoint sp, float angle, int maxStars, string Server)
         {
             string request = Server;
             request += "ra=" + sp.RA + "&";
@@ -149,7 +149,7 @@ namespace team_work
         /// </summary>
         /// <param name="xml">Xml для запроса</param>
         /// <returns></returns>
-        private static Star ParseStar(XmlDocument xml)
+        public static Star ParseStar(XmlDocument xml)
         {
             XmlElement star = (XmlElement)xml.GetElementsByTagName("object")[0];
             //int id = int.Parse((star.Attributes["id"].Value));
@@ -169,7 +169,7 @@ namespace team_work
         /// Получение списка звезд по заданным параметрам
         /// </summary>
         /// <param name="xml">Xml для запроса</param>
-        private static List<SpacePoint> ParseGroup(XmlDocument xml)
+        public static List<SpacePoint> ParseGroup(XmlDocument xml)
         {
             List<SpacePoint> list = new List<SpacePoint>();
             XmlNodeList stars = xml.GetElementsByTagName("star");
