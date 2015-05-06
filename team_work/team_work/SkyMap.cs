@@ -12,39 +12,70 @@ namespace team_work
 {
     class SkyMap
     {
-        private const string ServerGroup = "http://server1.sky-map.org/getstars.jsp?";
-        private const string ServerStar = "http://server1.sky-map.org/search?";
+        private const int MaxServerNumber = 8;
+        private string getServerGroup (int num)
+        {
+            return "http://server" + num.ToString() + ".sky-map.org/getstars.jsp?";
+        }
+        private string getServerStar (int num)
+        {
+            return "http://server" + num.ToString() + ".sky-map.org/search?"; 
+        }
+
         public static NumberFormatInfo NFI()
         {
             NumberFormatInfo nfi = new NumberFormatInfo();
             nfi.NumberDecimalSeparator = ".";
             return nfi;
         }
-        public static List<SpacePoint> Query(SpacePoint sp, float angle, int maxStars)
-        {
-            string request = CreateRequest(sp, angle, maxStars);
-            XmlDocument response = MakeRequest(request);
 
-            List<SpacePoint> list = ParseGroup(response);
-            return list;
-        }
-        public static Star Query(String starName)
+        public List<SpacePoint> Query(SpacePoint sp, float angle, int maxStars)
         {
-            string request = CreateRequest(starName);
-            XmlDocument response = MakeRequest(request);
+            for (int i = 0; i < MaxServerNumber; i++)
+            {
+                try
+                {
+                    string request = CreateRequest(sp, angle, maxStars, getServerGroup(i));
+                    XmlDocument response = MakeRequest(request);
+                    List<SpacePoint> list = ParseGroup(response);
+                    return list;
+                }
+                catch (System.Net.WebException e)
+                {
 
-            Star star = ParseStar(response);
-            return star;
+                }
+            }
+            return null;
         }
-        private static string CreateRequest(String starName)
+
+        public Star Query(String starName)
         {
-            string request = ServerStar;
+            for (int i = 0; i < MaxServerNumber; i++)
+            {
+                try
+                {
+                    string request = CreateRequest(starName, getServerStar(i));
+                    XmlDocument response = MakeRequest(request);
+
+                    Star star = ParseStar(response);
+                    return star;
+                }
+                catch (System.Net.WebException e)
+                {
+
+                }
+            }
+            return null;
+        }
+        private static string CreateRequest(String starName, string Server)
+        {
+            string request = Server;
             request += "star=" + starName;
             return request;
         }
-        private static string CreateRequest(SpacePoint sp, float angle, int maxStars)
+        private static string CreateRequest(SpacePoint sp, float angle, int maxStars, string Server)
         {
-            string request = ServerGroup;
+            string request = Server;
             request += "ra=" + sp.RA + "&";
             request += "de=" + sp.DE + "&";
             request += "max_vmag=" + sp.Magnitude + "&";
@@ -65,10 +96,6 @@ namespace team_work
 
         private static Star ParseStar(XmlDocument xml)
         {
-            //Create namespace manager
-            XmlNamespaceManager nsmgr = new XmlNamespaceManager(xml.NameTable);
-            nsmgr.AddNamespace("rest", "http://schemas.microsoft.com/search/local/ws/rest/v1");
-
             XmlElement star = (XmlElement)xml.GetElementsByTagName("object")[0];
             //int id = int.Parse((star.Attributes["id"].Value));
             string catID = star.GetElementsByTagName("catId")[0].InnerText;
@@ -86,12 +113,9 @@ namespace team_work
         private static List<SpacePoint> ParseGroup(XmlDocument xml)
         {
             List<SpacePoint> list = new List<SpacePoint>();
-            //Create namespace manager
-            XmlNamespaceManager nsmgr = new XmlNamespaceManager(xml.NameTable);
-            nsmgr.AddNamespace("rest", "http://schemas.microsoft.com/search/local/ws/rest/v1");
             XmlNodeList stars = xml.GetElementsByTagName("star");
 
-            foreach(XmlElement star in stars)
+            foreach (XmlElement star in stars)
             {
                 int id = int.Parse((star.Attributes["id"].Value));
                 string catID = star.GetElementsByTagName("catId")[0].InnerText;

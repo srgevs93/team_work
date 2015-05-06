@@ -45,6 +45,20 @@ namespace team_work
 
     class Star
     {
+        public static int compareByName(SpacePoint x, SpacePoint y)
+        {
+            if ((x == null) || (y == null))
+                return 0;
+            return x.CatID.CompareTo(y.CatID);
+        }
+
+        public static int compareByMag(SpacePoint x, SpacePoint y)
+        {
+            if ((x == null) || (y == null))
+                return 0;
+            return x.Magnitude.CompareTo(y.Magnitude);
+        }
+
         public Star(SpacePoint sp, Constellation constellation)
         {
             this.SpcPoint = sp;

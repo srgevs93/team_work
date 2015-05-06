@@ -41,7 +41,6 @@
             this.количествоЗвездToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сортировкаПоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.звезднойВеличинеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.координатамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.поАлфавитуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.фильтрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,21 +77,21 @@
             // выходToolStripMenuItem
             // 
             this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.выходToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.выходToolStripMenuItem.Text = "Показать...";
             this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
             // очиститьToolStripMenuItem
             // 
             this.очиститьToolStripMenuItem.Name = "очиститьToolStripMenuItem";
-            this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.очиститьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.очиститьToolStripMenuItem.Text = "Очистить";
             this.очиститьToolStripMenuItem.Click += new System.EventHandler(this.очиститьToolStripMenuItem_Click);
             // 
             // выходToolStripMenuItem1
             // 
             this.выходToolStripMenuItem1.Name = "выходToolStripMenuItem1";
-            this.выходToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.выходToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
             this.выходToolStripMenuItem1.Text = "Выход";
             this.выходToolStripMenuItem1.Click += new System.EventHandler(this.выходToolStripMenuItem1_Click);
             // 
@@ -140,7 +139,6 @@
             // 
             this.сортировкаПоToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.звезднойВеличинеToolStripMenuItem,
-            this.координатамToolStripMenuItem,
             this.поАлфавитуToolStripMenuItem});
             this.сортировкаПоToolStripMenuItem.Name = "сортировкаПоToolStripMenuItem";
             this.сортировкаПоToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
@@ -152,13 +150,6 @@
             this.звезднойВеличинеToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.звезднойВеличинеToolStripMenuItem.Text = "звездной величине";
             this.звезднойВеличинеToolStripMenuItem.Click += new System.EventHandler(this.звезднойВеличинеToolStripMenuItem_Click);
-            // 
-            // координатамToolStripMenuItem
-            // 
-            this.координатамToolStripMenuItem.Name = "координатамToolStripMenuItem";
-            this.координатамToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.координатамToolStripMenuItem.Text = "координатам";
-            this.координатамToolStripMenuItem.Click += new System.EventHandler(this.координатамToolStripMenuItem_Click);
             // 
             // поАлфавитуToolStripMenuItem
             // 
@@ -250,7 +241,6 @@
         private System.Windows.Forms.ToolStripMenuItem количествоЗвездToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сортировкаПоToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem звезднойВеличинеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem координатамToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem поАлфавитуToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem фильтрыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
