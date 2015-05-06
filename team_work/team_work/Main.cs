@@ -10,13 +10,17 @@ using System.Windows.Forms;
 
 namespace team_work
 {
+    /// <summary>
+    /// Главная форма приложения
+    /// </summary>
     public partial class Main : Form
     {
-        DateTime data = DateTime.Now;   //дата наблюдений
+        DateTime data = DateTime.Now;
         float lon=0;     //долгота
         float lat=0;     //широта
         int count = 100; //кол-во выводимых звезд
         List<SpacePoint> list;
+
         public Main()
         {
             InitializeComponent();
@@ -85,6 +89,9 @@ namespace team_work
             }
         }
 
+        /// <summary>
+        /// Обновление списка полученных по запросу зездных объектов
+        /// </summary>
         private void ShowList()
         {
             // Shutdown the painting of the ListBox as items are added.

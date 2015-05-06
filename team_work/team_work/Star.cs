@@ -6,17 +6,36 @@ using System.Threading.Tasks;
 
 namespace team_work
 {
+    /// <summary>
+    /// Класс задает параметры для звездного объекта
+    /// </summary>
     class SpacePoint
     {
+        /// <summary>
+        /// Конструктор
+        /// <remarks>Используется для найденных объектов</remarks>
+        /// </summary>
+        /// <param name="id">Идентификатор</param>
+        /// <param name="catID">Название в каталоге</param>
+        /// <param name="ra">Прямое восхождение звезды</param>
+        /// <param name="de">Склонение</param>
+        /// <param name="mag">Звездная величина</param>
         public SpacePoint(int id, string catID, double ra, double de, float mag)
         {
             this.ID = id;
             this.CatID = catID;
-            this.RA = ra;         //прямое восхождение звезды
-            this.DE = de;         //склонение
-            this.Magnitude = mag; //звездная величина
+            this.RA = ra;         
+            this.DE = de;         
+            this.Magnitude = mag; 
         }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <remarks>Используется для поиска объектов</remarks>
+        /// <param name="ra">Прямое восхождение звезды</param>
+        /// <param name="de">Склонение</param>
+        /// <param name="mag">Звездная величина</param>
         public SpacePoint(double ra, double de, float mag)
         {
             this.RA = ra;
@@ -31,8 +50,16 @@ namespace team_work
         public readonly float Magnitude;
     }
 
+    /// <summary>
+    /// Класс задает параметры для созвездия
+    /// </summary>
     class Constellation
     {
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="id">Идентификатор</param>
+        /// <param name="name">Название</param>
         public Constellation(int id, string name)
         {
             this.ID = id;
@@ -43,8 +70,14 @@ namespace team_work
         public readonly string Name;
     }
 
+    /// <summary>
+    /// Класс задает парметры для звезды
+    /// </summary>
     class Star
     {
+        /// <summary>
+        /// Сравнение двух звездных объектов по идентификатору
+        /// </summary>
         public static int compareByName(SpacePoint x, SpacePoint y)
         {
             if ((x == null) || (y == null))
@@ -52,6 +85,9 @@ namespace team_work
             return x.CatID.CompareTo(y.CatID);
         }
 
+        /// <summary>
+        /// Сравнение двух звездных объектов по светимости
+        /// </summary>
         public static int compareByMag(SpacePoint x, SpacePoint y)
         {
             if ((x == null) || (y == null))
@@ -59,6 +95,11 @@ namespace team_work
             return x.Magnitude.CompareTo(y.Magnitude);
         }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="sp">Звездный объект</param>
+        /// <param name="constellation">Созвездие, которому принадлежит звезда</param>
         public Star(SpacePoint sp, Constellation constellation)
         {
             this.SpcPoint = sp;
