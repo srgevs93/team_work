@@ -151,18 +151,25 @@ namespace team_work
         /// <returns></returns>
         public static Star ParseStar(XmlDocument xml)
         {
-            XmlElement star = (XmlElement)xml.GetElementsByTagName("object")[0];
-            //int id = int.Parse((star.Attributes["id"].Value));
-            string catID = star.GetElementsByTagName("catId")[0].InnerText;
+            try
+            {
+                XmlElement star = (XmlElement)xml.GetElementsByTagName("object")[0];
+                //int id = int.Parse((star.Attributes["id"].Value));
+                string catID = star.GetElementsByTagName("catId")[0].InnerText;
 
-            XmlElement constellation = (XmlElement)star.GetElementsByTagName("constellation")[0];
-            int constellationID = int.Parse(constellation.Attributes["id"].Value);
-            string constellationName = constellation.InnerText;
+                XmlElement constellation = (XmlElement)star.GetElementsByTagName("constellation")[0];
+                int constellationID = int.Parse(constellation.Attributes["id"].Value);
+                string constellationName = constellation.InnerText;
 
-            double ra = double.Parse(star.GetElementsByTagName("ra")[0].InnerText, NFI());
-            double de = double.Parse(star.GetElementsByTagName("de")[0].InnerText, NFI());
-            float mag = float.Parse(star.GetElementsByTagName("mag")[0].InnerText, NFI());
-            return new Star(new SpacePoint(0, catID, ra, de, mag), new Constellation(constellationID, constellationName));
+                double ra = double.Parse(star.GetElementsByTagName("ra")[0].InnerText, NFI());
+                double de = double.Parse(star.GetElementsByTagName("de")[0].InnerText, NFI());
+                float mag = float.Parse(star.GetElementsByTagName("mag")[0].InnerText, NFI());
+                return new Star(new SpacePoint(0, catID, ra, de, mag), new Constellation(constellationID, constellationName));
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         /// <summary>

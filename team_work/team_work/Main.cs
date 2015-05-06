@@ -147,8 +147,14 @@ namespace team_work
             string Info = listBox1.SelectedItem.ToString();
             string[] words = Info.Split('\t');
             Star star = new SkyMap().Query(words[0]);
-            label1.Text = "Информация и звезде: \n Имя звезды : "+words[0] +
-                " \n Звездная величина: "+words[2]+ "\n RA = "+words[3]+"\n DE = "+words[4]+"\n Имя созвездия: "+star.Constellation.Name;
+            label1.Text = "Информация и звезде: \n Имя звезды : " + words[0] +
+                " \n Звездная величина: " + words[2] + "\n RA = " + words[3] + "\n DE = " + words[4];
+            if (star != null)
+            {
+                 label1.Text+= "\n Имя созвездия: " + star.Constellation.Name;
+            }
+            else
+                MessageBox.Show("Дополнительная информация не найдена");
 
         }
 
