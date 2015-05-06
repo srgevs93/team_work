@@ -52,12 +52,6 @@ namespace team_work
             }
         }
 
-        private void фильтрыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Filters filters = new Filters();
-            filters.Show();
-        }
-
         private void выходToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Close();
@@ -88,9 +82,7 @@ namespace team_work
                     ShowList();
                 else
                     MessageBox.Show("все серверы недоступны");
-                
             }
-
         }
 
         private void ShowList()
