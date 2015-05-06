@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace team_work
 {
+    /// <summary>
+    /// Главная форма приложения
+    /// </summary>
     public partial class Main : Form
     {
         DateTime data = DateTime.Now;   //дата наблюдений
