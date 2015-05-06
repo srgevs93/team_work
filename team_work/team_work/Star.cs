@@ -9,7 +9,7 @@ namespace team_work
     /// <summary>
     /// Класс задает параметры для звездного объекта
     /// </summary>
-    class SpacePoint
+    public class SpacePoint
     {
         /// <summary>
         /// Конструктор
@@ -53,7 +53,7 @@ namespace team_work
     /// <summary>
     /// Класс задает параметры для созвездия
     /// </summary>
-    class Constellation
+    public class Constellation
     {
         /// <summary>
         /// Конструктор
@@ -73,7 +73,7 @@ namespace team_work
     /// <summary>
     /// Класс задает парметры для звезды
     /// </summary>
-    class Star
+    public class Star
     {
         /// <summary>
         /// Сравнение двух звездных объектов по идентификатору
