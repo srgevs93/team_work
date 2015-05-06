@@ -71,7 +71,7 @@ namespace team_work
     }
 
     /// <summary>
-    /// Класс задает парметры для звезды
+    /// Класс задает параметры для звезды
     /// </summary>
     public class Star
     {

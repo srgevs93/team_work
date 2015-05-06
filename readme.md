@@ -8,7 +8,7 @@ Just a simple study app listing stars using gps coords & time
 Devs: 
 * Evseev S.
 * Litvinova I.
-* Borisova T.
+* Borisova N.
 * Vassyutovich I.
 
 Links:
