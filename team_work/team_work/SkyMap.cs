@@ -13,7 +13,7 @@ namespace team_work
     /// <summary>
     /// Класс для карты звездного неба
     /// </summary>
-    class SkyMap
+    public class SkyMap
     {
         private const int MaxServerNumber = 8;
         
