@@ -1,7 +1,8 @@
 # Star Atlas
-Just a simple study app listing stars on a pic using gps coords & time
+Just a simple study app listing stars using gps coords & time
 
 [![Build status](https://ci.appveyor.com/api/projects/status/wl6ela7a0lqx8s9l/branch/master?svg=true)](https://ci.appveyor.com/project/srgevs/team-work/branch/master)
+[![art](https://github.com/srgevs93/team_work/blob/develop/art.jpg)](https://github.com/srgevs93/team_work/blob/develop/art.jpg)
 
 Devs: 
 * Evseev S.
