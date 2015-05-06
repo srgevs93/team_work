@@ -12,19 +12,14 @@ namespace team_work
 {
     class SkyMap
     {
-        private string[] ServerGroup = null;
-        private string[] ServerStar = null;
-        public SkyMap()
+        private const int MaxServerNumber = 8;
+        private string getServerGroup (int num)
         {
-            this.ServerGroup = new string[]{
-            "http://server1.sky-map.org/getstars.jsp?", 
-            "http://server2.sky-map.org/getstars.jsp?", 
-            "http://server3.sky-map.org/getstars.jsp?"};
-
-            this.ServerStar = new string[]{
-            "http://server1.sky-map.org/search?",
-            "http://server2.sky-map.org/search?",
-            "http://server3.sky-map.org/search?"};
+            return "http://server" + num.ToString() + ".sky-map.org/getstars.jsp?";
+        }
+        private string getServerStar (int num)
+        {
+            return "http://server" + num.ToString() + ".sky-map.org/search?"; 
         }
 
         public static NumberFormatInfo NFI()
@@ -33,13 +28,14 @@ namespace team_work
             nfi.NumberDecimalSeparator = ".";
             return nfi;
         }
+
         public List<SpacePoint> Query(SpacePoint sp, float angle, int maxStars)
         {
-            for (int i = 0; i < ServerGroup.Length; i++)
+            for (int i = 0; i < MaxServerNumber; i++)
             {
                 try
                 {
-                    string request = CreateRequest(sp, angle, maxStars, ServerGroup[i]);
+                    string request = CreateRequest(sp, angle, maxStars, getServerGroup(i));
                     XmlDocument response = MakeRequest(request);
                     List<SpacePoint> list = ParseGroup(response);
                     return list;
@@ -54,11 +50,11 @@ namespace team_work
 
         public Star Query(String starName)
         {
-            for (int i = 0; i < ServerGroup.Length; i++)
+            for (int i = 0; i < MaxServerNumber; i++)
             {
                 try
                 {
-                    string request = CreateRequest(starName, ServerStar[i]);
+                    string request = CreateRequest(starName, getServerStar(i));
                     XmlDocument response = MakeRequest(request);
 
                     Star star = ParseStar(response);
