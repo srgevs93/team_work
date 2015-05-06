@@ -6,6 +6,8 @@ Just a simple study app listing stars on a pic using gps coords & time
 Devs: 
 * Evseev S.
 * Litvinova I.
+* Borisova T.
+* Vassyutovich I.
 
 Links:
 * [bug tracker] (http://srgevs93.myjetbrains.com/youtrack/rest/agile/Agile-0/sprint)
