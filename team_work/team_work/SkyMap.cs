@@ -87,6 +87,7 @@ namespace team_work
         private static XmlDocument MakeRequest(string request)
         {
             HttpWebRequest httpRequest = WebRequest.Create(request) as HttpWebRequest;
+            httpRequest.Timeout = 10000;
             HttpWebResponse httpResponse = httpRequest.GetResponse() as HttpWebResponse;
 
             XmlDocument xmlDoc = new XmlDocument();
