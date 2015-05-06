@@ -139,6 +139,11 @@ namespace team_work
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listBox1.SelectedIndex == 0)
+            {
+                label1.Text = "";
+                return;
+            }
             string Info = listBox1.SelectedItem.ToString();
             string[] words = Info.Split('\t');
             Star star = new SkyMap().Query(words[0]);
