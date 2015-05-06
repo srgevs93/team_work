@@ -10,10 +10,16 @@ using System.Globalization;
 
 namespace team_work
 {
+    /// <summary>
+    /// Класс для карты звездного неба
+    /// </summary>
     class SkyMap
     {
         private string[] ServerGroup = null;
         private string[] ServerStar = null;
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public SkyMap()
         {
             this.ServerGroup = new string[]{
@@ -27,12 +33,23 @@ namespace team_work
             "http://server3.sky-map.org/search?"};
         }
 
+        /// <summary>
+        /// Определение десятичного разделителя
+        /// </summary>
         public static NumberFormatInfo NFI()
         {
             NumberFormatInfo nfi = new NumberFormatInfo();
             nfi.NumberDecimalSeparator = ".";
             return nfi;
         }
+
+        /// <summary>
+        /// Получение списка объектов для заданных параметров
+        /// </summary>
+        /// <param name="sp">Объект</param>
+        /// <param name="angle">Угол</param>
+        /// <param name="maxStars">Максимальное количество</param>
+        /// <returns></returns>
         public List<SpacePoint> Query(SpacePoint sp, float angle, int maxStars)
         {
             for (int i = 0; i < ServerGroup.Length; i++)
@@ -52,6 +69,10 @@ namespace team_work
             return null;
         }
 
+        /// <summary>
+        /// Поиск звезды по названию
+        /// </summary>
+        /// <param name="starName">Название звезды</param>
         public Star Query(String starName)
         {
             for (int i = 0; i < ServerGroup.Length; i++)
@@ -71,12 +92,25 @@ namespace team_work
             }
             return null;
         }
+        /// <summary>
+        /// Формирование запроса на поиск информации о звезде по ее названию
+        /// </summary>
+        /// <param name="starName">Название звезды</param>
+        /// <param name="Server">Сервер</param>
         private static string CreateRequest(String starName, string Server)
         {
             string request = Server;
             request += "star=" + starName;
             return request;
         }
+        /// <summary>
+        /// Формирование запроса на поиск информации о звезде по заданным параметрам
+        /// </summary>
+        /// <param name="sp">Объект</param>
+        /// <param name="angle">Угол</param>
+        /// <param name="maxStars">Максимальное количество звезд</param>
+        /// <param name="Server">Сервер</param>
+        /// <returns></returns>
         private static string CreateRequest(SpacePoint sp, float angle, int maxStars, string Server)
         {
             string request = Server;
@@ -88,6 +122,11 @@ namespace team_work
             return request;
         }
 
+        /// <summary>
+        /// Получение xml от сервера
+        /// </summary>
+        /// <param name="request">Запрос</param>
+        /// <returns></returns>
         private static XmlDocument MakeRequest(string request)
         {
             HttpWebRequest httpRequest = WebRequest.Create(request) as HttpWebRequest;
@@ -98,6 +137,11 @@ namespace team_work
             return xmlDoc;
         }
 
+        /// <summary>
+        /// Получение информации по выбранной звезде
+        /// </summary>
+        /// <param name="xml">Xml для запроса</param>
+        /// <returns></returns>
         private static Star ParseStar(XmlDocument xml)
         {
             XmlElement star = (XmlElement)xml.GetElementsByTagName("object")[0];
@@ -114,6 +158,10 @@ namespace team_work
             return new Star(new SpacePoint(0, catID, ra, de, mag), new Constellation(constellationID, constellationName));
         }
 
+        /// <summary>
+        /// Получение списка звезд по заданным параметрам
+        /// </summary>
+        /// <param name="xml">Xml для запроса</param>
         private static List<SpacePoint> ParseGroup(XmlDocument xml)
         {
             List<SpacePoint> list = new List<SpacePoint>();
