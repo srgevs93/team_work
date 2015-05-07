@@ -42,7 +42,6 @@
             this.сортировкаПоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.звезднойВеличинеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.поАлфавитуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.фильтрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.руководствоПользователяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,8 +121,7 @@
             // 
             this.видToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.количествоЗвездToolStripMenuItem,
-            this.сортировкаПоToolStripMenuItem,
-            this.фильтрыToolStripMenuItem});
+            this.сортировкаПоToolStripMenuItem});
             this.видToolStripMenuItem.Name = "видToolStripMenuItem";
             this.видToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.видToolStripMenuItem.Text = "Вид";
@@ -157,13 +155,6 @@
             this.поАлфавитуToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.поАлфавитуToolStripMenuItem.Text = "алфавиту";
             this.поАлфавитуToolStripMenuItem.Click += new System.EventHandler(this.поАлфавитуToolStripMenuItem_Click);
-            // 
-            // фильтрыToolStripMenuItem
-            // 
-            this.фильтрыToolStripMenuItem.Name = "фильтрыToolStripMenuItem";
-            this.фильтрыToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.фильтрыToolStripMenuItem.Text = "Фильтры...";
-            this.фильтрыToolStripMenuItem.Click += new System.EventHandler(this.фильтрыToolStripMenuItem_Click);
             // 
             // справкаToolStripMenuItem
             // 
@@ -242,7 +233,6 @@
         private System.Windows.Forms.ToolStripMenuItem сортировкаПоToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem звезднойВеличинеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem поАлфавитуToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem фильтрыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem руководствоПользователяToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;

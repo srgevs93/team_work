@@ -10,13 +10,17 @@ using System.Windows.Forms;
 
 namespace team_work
 {
+    /// <summary>
+    /// Главная форма приложения
+    /// </summary>
     public partial class Main : Form
     {
-        DateTime data = DateTime.Now;   //дата наблюдений
+        DateTime data = DateTime.Now;
         float lon=0;     //долгота
         float lat=0;     //широта
         int count = 100; //кол-во выводимых звезд
         List<SpacePoint> list;
+
         public Main()
         {
             InitializeComponent();
@@ -52,12 +56,6 @@ namespace team_work
             }
         }
 
-        private void фильтрыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Filters filters = new Filters();
-            filters.Show();
-        }
-
         private void выходToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Close();
@@ -88,11 +86,12 @@ namespace team_work
                     ShowList();
                 else
                     MessageBox.Show("все серверы недоступны");
-                
             }
-
         }
 
+        /// <summary>
+        /// Обновление списка полученных по запросу зездных объектов
+        /// </summary>
         private void ShowList()
         {
             // Shutdown the painting of the ListBox as items are added.
@@ -140,11 +139,22 @@ namespace team_work
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listBox1.SelectedIndex == 0)
+            {
+                label1.Text = "";
+                return;
+            }
             string Info = listBox1.SelectedItem.ToString();
             string[] words = Info.Split('\t');
             Star star = new SkyMap().Query(words[0]);
-            label1.Text = "Информация и звезде: \n Имя звезды : "+words[0] +
-                " \n Звездная величина: "+words[2]+ "\n RA = "+words[3]+"\n DE = "+words[4]+"\n Имя созвездия: "+star.Constellation.Name;
+            label1.Text = "Информация и звезде: \n Имя звезды : " + words[0] +
+                " \n Звездная величина: " + words[2] + "\n RA = " + words[3] + "\n DE = " + words[4];
+            if (star != null)
+            {
+                 label1.Text+= "\n Имя созвездия: " + star.Constellation.Name;
+            }
+            else
+                MessageBox.Show("Дополнительная информация не найдена");
 
         }
 

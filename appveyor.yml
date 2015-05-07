@@ -1,0 +1,67 @@
+version: 0.3.{build}
+branches:
+  only:
+  - master
+  - develop
+  - documentation
+  - unit-testing
+environment:
+  access_token:
+    secure: ZJN4bDnJ4Ndsw6nwI1OYamvwylIh2rofO1EjuLQ3El0L/hy/6GQEGUXj90hNMKjl
+install:
+- ps: >-
+    choco install doxygen.portable
+
+    choco install resharper-clt.portable
+cache:
+- C:\ProgramData\chocolatey\bin
+- C:\ProgramData\chocolatey\lib
+before_build:
+- ps: >-
+    write-host "creating documentation"
+
+    doxygen doxygen.conf
+
+    write-host "inspecting code"
+
+    inspectcode team_work\team_work.sln /o=docs\html\report.xml
+
+    cd team_work
+
+    nuget restore
+
+    cd ..\
+build:
+  project: team_work/team_work.sln
+  verbosity: normal
+after_build:
+- ps: >-
+    cd docs\html
+
+    git init
+
+    git config user.email "MONOmah_V@mail.ru"
+
+    git config user.name "AppVeyor"
+
+    git config credential.helper store
+
+    git config push.default matching
+
+    Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+
+    Get-Content "$env:USERPROFILE\.git-credentials"
+
+    git checkout -b gh-pages
+
+    git remote add origin https://github.com/srgevs93/team_work.git
+
+    git add -A
+
+    git commit -a -m "skip ci - documentation update"
+
+    git status
+
+    git push -f origin gh-pages
+
+    echo Done
